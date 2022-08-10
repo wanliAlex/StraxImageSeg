@@ -74,7 +74,7 @@ def check_accuracy(loader, model, device = "cuda"):
         f"Got {num_correct}/{num_pixels} with acc {num_correct/num_pixels * 100:.2f}%"
     )
     print(
-        f"Dice score: {dice_score/len(loader)}"
+        f"IOU Score: {dice_score/len(loader)}"
     )
     model.train()
 

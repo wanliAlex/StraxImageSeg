@@ -14,7 +14,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 VALD_SPLIT = 0.25
 BATCH_SIZE = 8
 NUM_EPOCHS = 50
-NUM_WORKERS = 2
+NUM_WORKERS = 4
 IMAGE_HEIGHT = 512
 IMAGE_WIDTH = 512
 LEARNING_RATE = 1e-4
@@ -89,7 +89,7 @@ def main():
     scaler = torch.cuda.amp.GradScaler()
 
     for epoch in range(NUM_EPOCHS):
-        print(f"Starting train epoch {epoch+1}/{NUM_EPOCHS}:")
+        print(f"\nStarting train epoch {epoch+1}/{NUM_EPOCHS}:")
         train_fn(train_loader, model, optimizer, loss_fn, scaler)
 
         checkpoint = {
@@ -98,8 +98,6 @@ def main():
         }
         check_accuracy(test_loader, model, device=DEVICE)
         save_ckpt(checkpoint)
-
-    #save chpt
 
 if __name__ == "__main__":
   main()
