@@ -25,10 +25,10 @@ test_masks = glob.glob(TEST_PATH + '/**/bone/*.tif', recursive=True)
 def copy(src, dest):
     for idx, file_name_src in enumerate(src):
 
-        file_dir = os.path.basename((os.path.dirname(file_name_src)))  # Would be "Subfolder_with_patientID1"
+        case_name = os.path.basename(os.path.dirname((os.path.dirname(file_name_src))))  # Would be "Subfolder_with_patientID1"
         file_name = os.path.basename(file_name_src)  # Would be "2.dcm"
 
-        file_name_dst = os.path.join(dest, f"{file_dir}_{idx}")  # Would be "/home/nponcian/Documents/folder_with_subfolders_dest/Subfolder_with_patientID1_2.dcm"
+        file_name_dst = os.path.join(dest, f"{case_name}_{file_name}")
 
         shutil.copy2(file_name_src, file_name_dst)
         print(f"Copied:\n\tFr: {file_name_src}\n\tTo: {file_name_dst}")

@@ -20,7 +20,8 @@ def get_loaders(
         batch_size,
         train_transform,
         test_transform,
-        num_workers = 2
+        num_workers = 2,
+        pin_memory = True,
 ):
     train_ds = StraxDataset(
         image_dir = train_dir,
@@ -32,7 +33,8 @@ def get_loaders(
         train_ds,
         batch_size = batch_size,
         num_workers=num_workers,
-        shuffle=True
+        shuffle=True,
+        pin_memory = pin_memory
     )
 
     test_ds = StraxDataset(
@@ -45,7 +47,8 @@ def get_loaders(
         test_ds,
         batch_size=batch_size,
         num_workers=num_workers,
-        shuffle = False
+        shuffle = False,
+        pin_memory = pin_memory
     )
 
     return train_loader, test_loader
@@ -65,7 +68,8 @@ def check_accuracy(loader, model, device = "cuda"):
             preds = (preds > 0.5).float()
             num_correct += (preds == y).sum()
             num_pixels  += torch.numel(preds)
-            dice_score += ((2 * (preds * y).sum()) / ((preds + y).sum() + 1e-8))
+            dice_score += ((2 * (preds * y).sum()) /
+                           ((preds + y).sum() + 1e-8))
     print(
         f"Got {num_correct}/{num_pixels} with acc {num_correct/num_pixels * 100:.2f}%"
     )
