@@ -23,7 +23,7 @@ def get_loaders(
         num_workers = 2
 ):
     train_ds = StraxDataset(
-        iamge_dir = train_dir,
+        image_dir = train_dir,
         mask_dir = train_maskdir,
         transform = train_transform
     )
@@ -36,7 +36,7 @@ def get_loaders(
     )
 
     test_ds = StraxDataset(
-        iamge_dir=test_dir,
+        image_dir=test_dir,
         mask_dir=test_maskdir,
         transform=test_transform
     )

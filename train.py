@@ -18,10 +18,10 @@ NUM_WORKERS = 2
 IMAGE_HEIGHT = 512
 IMAGE_WIDTH = 512
 LEARNING_RATE = 1e-4
-TRAIN_IMG_DIR = "data/train_images/"
-TRAIN_MASK_DIR = "data/train_masks/"
-TEST_IMG_DIR = "data/test_images/"
-TEST_MASK_DIR = "data/test_masks/"
+TRAIN_IMG_DIR = "dataset/train_images/"
+TRAIN_MASK_DIR = "dataset/train_masks/"
+TEST_IMG_DIR = "dataset/test_images/"
+TEST_MASK_DIR = "dataset/test_masks/"
 
 def train_fn(loader, model, optimizer, loss_fn, scaler):
     loop = tqdm(loader)
