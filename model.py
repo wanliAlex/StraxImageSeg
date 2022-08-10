@@ -6,11 +6,11 @@ class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(DoubleConv, self).__init__()
         self.conv = nn.Sequential(
-            nn.Con2d(in_channels, out_channels, 3, 1, 1, bias = False),
-            nn.BatchNoram2d(),
+            nn.Conv2d(in_channels, out_channels, 3, 1, 1, bias = False),
+            nn.BatchNorm2d(out_channels),
             nn.ReLU(inplace = True),
-            nn.Con2d(out_channels, out_channels, 3, 1, 1, bias=False),
-            nn.BatchNoram2d(),
+            nn.Conv2d(out_channels, out_channels, 3, 1, 1, bias=False),
+            nn.BatchNorm2d(out_channels),
             nn.ReLU(inplace=True),
         )
 
@@ -22,7 +22,7 @@ class UNET(nn.Module):
         super(UNET, self).__init__()
         self.ups = nn.ModuleList()
         self.downs = nn.ModuleList()
-        self.pool = nn.MaxPool2d(kernal_size = 2, stride= 2)
+        self.pool = nn.MaxPool2d(kernel_size = 2, stride= 2)
 
 
         #Down part of UNET
@@ -60,6 +60,13 @@ class UNET(nn.Module):
 
         return self.final_conv(x)
 
+def test():
+    x = torch.randn(3,1,512,512)
+    model = UNET(in_channels = 1, out_channels = 1)
+    preds = (x)
+    print(preds.shape)
+
+test()
 
 
 

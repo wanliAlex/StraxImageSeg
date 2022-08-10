@@ -46,7 +46,7 @@ def main():
         [
             A.Rotate(limit = 35, p = 1.0),
             A. HorizontalFlip(p = 0.5),
-            A.verticalFlip(p=0.1),
+            A.VerticalFlip(p=0.1),
             A.Normalize(
                 mean = [0.0, 0.0, 0.0],
                 std = [1.0, 1.0, 1.0],
@@ -97,3 +97,5 @@ def main():
 
         #save chpt
 
+if __name__ == "__main__":
+    main()
